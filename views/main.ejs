@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>익명계시판</title>
+  <link rel="stylesheet" href="/static/main.css">
+</head>
+<body>
+  <h1>(목록화면)</h1>
+  <div class="wrap">
+    <div class="head">
+      <h1>익명계시판</h1>
+    <form action="/new" method="get">
+      <input type="submit" value="새글">
+    </form>
+    </div>
+    <div class="list">
+    <% data.forEach(item => { %>
+      <ul>
+        <li><a href="/<%= item.id %>"><%= item.title %></a></li>
+      </ul>
+    <% }) %>
+    </div>
+  </div>
+</body>
+</html>
