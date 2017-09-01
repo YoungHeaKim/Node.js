@@ -5,15 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>새 글 입력화면</title>
-  <link rel="stylesheet" href="/static/new.css">
+  <link rel="stylesheet" href="/static/bootstrap.min.css">
 </head>
 <body>
-  <div class="wrap">
-  <h1>새 글 입력화면</h1>
+  <div class="container">
+  <table class="table table-striped table-inverse">
+    <tr>
+      <td>새 글 입력화면</td>
+    </tr>
+  </table>
   <form action="/" method="post">
-    <input type="text" name="title" class="title">
-    <input type="text" name="body" class="body">
-    <input type="submit" value="전송" class="submit">
+    <table class="table table-striped table-inverse">
+      <tr>
+        <td><input type="text" name="title" placeholder="title" class="form-control"></td>
+        <td><input type="text" name="author" placeholder="author" class="form-control"></td>
+      </tr>
+      <tr>
+        <td colspan="2"><input type="text" name="body" placeholder="text" class="form-control" style="height: 200px;"></td>
+      </tr>
+      <tr>
+        <td colspan="2">
+        <input type="submit" value="전송" class="btn btn-outline-success">
+        <a href="/" class="btn btn-outline-success">목록</a>
+        </td>
+      </tr>
+    </table>
   </form>
   </div>
 </body>

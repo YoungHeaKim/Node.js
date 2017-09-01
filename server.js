@@ -15,6 +15,7 @@ const data = [{
   num: 1,
   title: 'hi',
   body: '',
+  author:'나나나나나',
 }]
 
 // 첫 화면
@@ -32,7 +33,7 @@ app.get('/content/:num', (req, res) => {
   const num = parseInt(req.params.num)
   const matched = [...data].find(item => item.num === num)
   if(matched){
-    res.render('content.ejs')
+    res.render('content.ejs', {matched})
   } else {
     res.status(404)
     res.send('404 Not Found')
@@ -41,9 +42,10 @@ app.get('/content/:num', (req, res) => {
 
 app.post('/', (req, res) => {
   const title = req.body.title
-  const body = req.body.body  
+  const body = req.body.body
+  const author = req.body.author  
   const num = data.length+1
-  data.push({num, title})
+  data.push({num, title, author})
   res.redirect('/')
 })
 

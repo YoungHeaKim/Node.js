@@ -5,11 +5,23 @@
   <meta name="viewport" content="width=`, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>게시물</title>
-  <link rel="stylesheet" href="/static/content.css">
+  <link rel="stylesheet" href="/static/bootstrap.min.css">
 </head>
 <body>
-  <div class="wrap">
-    hi
+  <div class="container">
+    <table class="table table-bordered">
+      <tr>
+        <th>Title</th>
+        <td><%= matched.title %></td>
+        <th>작성자</th>
+        <td><%= matched.author %></td>
+      </tr>
+    </table>
+    <table class="table table-bordered">
+      <tr>
+        <td><%= matched.body %></td>
+      </tr>
+    </table>
   </div>
 </body>
 </html>
