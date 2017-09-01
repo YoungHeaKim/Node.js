@@ -12,8 +12,9 @@ const morgan = require('morgan')
 app.use(morgan('tiny'))
 
 const data = [{
+  num: 1,
   title: 'hi',
-  id: 1
+  body: '',
 }]
 
 // 첫 화면
@@ -26,14 +27,27 @@ app.get('/new', (req, res) => {
   res.render('new.ejs')
 })
 
+// 
+app.get('/content/:num', (req, res) => {
+  const num = parseInt(req.params.num)
+  const matched = [...data].find(item => item.num === num)
+  if(matched){
+    res.render('content.ejs')
+  } else {
+    res.status(404)
+    res.send('404 Not Found')
+  }
+})
+
 app.post('/', (req, res) => {
   const title = req.body.title
-
-  data.push({title})
+  const body = req.body.body  
+  const num = data.length+1
+  data.push({num, title})
   res.redirect('/')
 })
 
-// 4000번 포트
-app.listen(4000, () => {
+// 4001번 포트
+app.listen(4002, () => {
   console.log("listening")
 })

@@ -11,18 +11,27 @@
   <h1>(목록화면)</h1>
   <div class="wrap">
     <div class="head">
-      <h1>익명계시판</h1>
+      <h1>익명게시판</h1>
     <form action="/new" method="get">
       <input type="submit" value="새글">
     </form>
     </div>
-    <div class="list">
-    <% data.forEach(item => { %>
-      <ul>
-        <li><a href="/<%= item.id %>"><%= item.title %></a></li>
-      </ul>
-    <% }) %>
-    </div>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>게시물</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% data.forEach(item => { %>
+        <tr>
+          <td><%= item.num %></td>
+          <td><a href="/content/<%= item.num %>"><%= item.title %></a></td>
+        </tr>
+      <% }) %>
+      </tbody>
+    </table>
   </div>
 </body>
 </html>
