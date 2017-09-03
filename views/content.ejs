@@ -22,6 +22,27 @@
         <td><%= matched.body %></td>
       </tr>
     </table>
+    <table class="table table-bordered">
+      <% matchedCom.forEach(item => { %>
+        <tr>
+          <td>작성자</td>
+          <td colspan="3"><%= item.nickName %></td>
+          <td>댓글</td>
+          <td colspan="3"><%= item.comments %></td>
+        </tr>
+      <% }) %>
+    </table>
+    <form action="/content/<%= matched.num %>" method="post">
+      <table class="table table-bordered">
+        <tr>
+          <td><input type="text" name="nickName" placeholder="Please type your Nickname" class="form-control"></td>
+          <td><input type="text" name="comments" placeholder="댓글을 써주세요" class="form-control"></td>
+        </tr>
+        <tr>
+          <td colspan="2"><input type="submit" value="등록" class="btn btn-outline-success" name="ADD"></td>
+        </tr>
+      </table>
+    </form>
   </div>
 </body>
 </html>

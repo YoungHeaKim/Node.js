@@ -17,6 +17,11 @@ const data = [{
   body: '',
   author:'나나나나나',
 }]
+const comment = [{
+  num: 1,
+  nickName: '나요',
+  comments: 'goodgood',
+}]
 
 // 첫 화면
 app.get('/', (req, res) => {
@@ -28,12 +33,12 @@ app.get('/new', (req, res) => {
   res.render('new.ejs')
 })
 
-// 
 app.get('/content/:num', (req, res) => {
   const num = parseInt(req.params.num)
   const matched = [...data].find(item => item.num === num)
-  if(matched){
-    res.render('content.ejs', {matched})
+  const matchedCom = [...comment].filter(item => item.num === num)
+  if(matched && matchedCom){
+    res.render('content.ejs', {matched, matchedCom})
   } else {
     res.status(404)
     res.send('404 Not Found')
@@ -49,7 +54,15 @@ app.post('/', (req, res) => {
   res.redirect('/')
 })
 
+app.post('/content/:num', (req, res) => {
+  const num = parseInt(req.params.num)
+  const nickName = req.body.nickName
+  const comments = req.body.comments
+  comment.push({num, comments, nickName})
+  res.redirect('/content/'+num)
+})
+
 // 4001번 포트
-app.listen(4002, () => {
+app.listen(4003, () => {
   console.log("listening")
 })
