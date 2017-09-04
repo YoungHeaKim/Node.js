@@ -10,20 +10,15 @@
 <body>
   <div class="container">
     <div class="head">
-      <h2>익명게시판</h2>
+      <h2>관리자 페이지</h2>
     </div>
-    <form action="/admin" method="get" class="text-right">
-      <input type="submit" class="btn btn-outline-dark" value="관리자 로그인">
-    </form>
-    <form action="/new" method="get" class="text-right">
-      <input type="submit" class="btn btn-outline-dark" value="새글">
-    </form>
     <table class="table table-striped table-inverse">
       <thead>
         <tr>
           <th>번호</th>
           <th>게시물</th>
           <th>작성자</th>
+          <th>삭제</th>
         </tr>
       </thead>
       <tbody>
@@ -32,6 +27,9 @@
           <td><%= item.num %></td>
           <td><a href="/content/<%= item.num %>"><%= item.title %></td>
           <td><%= item.author %></td>
+          <td><form action="/admin" method="get" class="text-right">
+      <input type="submit" class="btn btn-outline-danger" value="삭제">
+    </form></td>
         </tr>
       <% }) %>
       </tbody>

@@ -1,6 +1,9 @@
 const express = require("express")
 const app = express()
 const bodyParser = require('body-parser')
+const morgan = require('morgan') // HTTP 로그남겨주는 것
+// 로그인 실행
+var basicAuth = require('express-basic-auth')
 
 app.use(bodyParser.urlencoded({ extended: false}))
 // express가 ejs를 템플릿 엔진으로 사용 가능하게 셋팅
@@ -8,7 +11,6 @@ app.set('view engine', 'ejs')
 // static 라우트를 추가한다.
 app.use('/static', express.static('public'))
 //HTTP 로그를 남겨주는 코드
-const morgan = require('morgan')
 app.use(morgan('tiny'))
 
 const data = [{
@@ -23,9 +25,21 @@ const comment = [{
   comments: 'goodgood',
 }]
 
+// 로그인 관련
+const authMiddleware = basicAuth({
+  users: { 'admin': 'admin' },
+  challenge: true,
+  realm: 'Imb4T3st4pp'
+})
+
 // 첫 화면
 app.get('/', (req, res) => {
   res.render('main.ejs', {data})
+})
+
+// admin page
+app.get('/admin', authMiddleware, (req, res) => {
+  res.render('admin.ejs', {data})
 })
 
 // 새글창으로 보내는 화면
@@ -38,7 +52,7 @@ app.get('/content/:num', (req, res) => {
   const matched = [...data].find(item => item.num === num)
   const matchedCom = [...comment].filter(item => item.num === num)
   if(matched && matchedCom){
-    res.render('content.ejs', {matched, matchedCom})
+    a
   } else {
     res.status(404)
     res.send('404 Not Found')
@@ -50,7 +64,7 @@ app.post('/', (req, res) => {
   const body = req.body.body
   const author = req.body.author  
   const num = data.length+1
-  data.push({num, title, author})
+  data.push({num, title, author, body})
   res.redirect('/')
 })
 
