@@ -26,9 +26,9 @@
       <% matchedCom.forEach(item => { %>
         <tr>
           <td>작성자</td>
-          <td colspan="3"><%= item.nickName %></td>
+          <td><%= item.nickName %></td>
           <td>댓글</td>
-          <td colspan="3"><%= item.comments %></td>
+          <td><%= item.comments %></td>
         </tr>
       <% }) %>
     </table>
@@ -39,7 +39,10 @@
           <td><input type="text" name="comments" placeholder="댓글을 써주세요" class="form-control"></td>
         </tr>
         <tr>
-          <td colspan="2"><input type="submit" value="등록" class="btn btn-outline-success" name="ADD"></td>
+          <td colspan="2"> 
+            <input type="submit" value="등록" class="btn btn-outline-success" name="ADD">
+            <a href="/" class="btn btn-outline-success float-right">목록</a>
+          </td>
         </tr>
       </table>
     </form>

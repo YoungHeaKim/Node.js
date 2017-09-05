@@ -22,15 +22,18 @@
         </tr>
       </thead>
       <tbody>
+      <a href="/" class="btn btn-outline-success">목록</a>
       <% data.forEach(item => { %>
+        <form action="/admin/<%= item.num %>" method="post" class="text-right">
         <tr>
           <td><%= item.num %></td>
           <td><a href="/content/<%= item.num %>"><%= item.title %></td>
           <td><%= item.author %></td>
-          <td><form action="/admin" method="get" class="text-right">
-      <input type="submit" class="btn btn-outline-danger" value="삭제">
-    </form></td>
+          <td>
+              <input type="submit" class="btn btn-outline-danger" value="삭제">
+          </td>
         </tr>
+        </form>
       <% }) %>
       </tbody>
     </table>
